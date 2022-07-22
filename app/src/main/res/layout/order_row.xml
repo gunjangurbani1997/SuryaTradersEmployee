@@ -1,0 +1,209 @@
+<layout xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="orderInterface"
+            type="com.example.suryatradersemployee.adapters.OrderAdapter.OrderInterface" />
+        <variable
+            name="orders"
+            type="com.example.suryatradersemployee.model.Orders" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardUseCompatPadding="true"
+        app:cardCornerRadius="@dimen/_5sdp"
+        app:strokeColor="@color/orange"
+        app:cardElevation="@dimen/_2sdp"
+        android:onClick="@{()->orderInterface.onOrderClick(orders.orderId)}">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_8"
+            >
+
+            <TextView
+                android:id="@+id/orderId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="2dp"
+                android:layout_marginStart="2dp"
+                android:padding="5dp"
+                android:text="Order Id:"
+                android:textSize="@dimen/textSize_16"/>
+            <TextView
+                android:id="@+id/orderCustomerName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="@dimen/margin_10"
+                android:layout_marginStart="2dp"
+                android:padding="5dp"
+                android:layout_below="@+id/orderId"
+                android:text="Customer Name:"
+                android:textSize="@dimen/textSize_16"/>
+            <TextView
+                android:id="@+id/orderStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="2dp"
+                android:layout_marginStart="2dp"
+                android:padding="5dp"
+                android:layout_below="@+id/orderCustomerName"
+                android:text="Order Status:"
+                android:textSize="@dimen/textSize_16"/>
+
+            <TextView
+                android:id="@+id/orderCreatedOn"
+                android:layout_width="@dimen/margin_100"
+                android:layout_height="@dimen/margin_30"
+                android:layout_marginTop="@dimen/margin_10"
+                android:text="Placed on:"
+                android:textSize="@dimen/textSize_16"
+                android:padding="5dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="2dp"
+                android:layout_marginStart="2dp"
+                android:layout_below="@+id/orderStatus"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:id="@+id/balesPacked"
+                android:layout_width="@dimen/margin_100"
+                android:layout_height="@dimen/margin_30"
+                android:layout_marginTop="@dimen/margin_10"
+                android:padding="5dp"
+                android:textSize="@dimen/textSize_16"
+                android:text="No. of bales packed"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="2dp"
+                android:layout_marginStart="2dp"
+                android:layout_below="@+id/orderCreatedOn"
+                android:layout_alignParentStart="true"/>
+
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignTop="@+id/orderId"
+                android:layout_marginLeft="@dimen/margin_5"
+                android:layout_marginStart="@dimen/margin_8"
+                android:layout_toEndOf="@+id/orderCustomerName"
+                android:layout_toRightOf="@+id/orderCustomerName"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/orderIdTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:padding="5dp"
+                    android:text="@{String.valueOf(orders.orderId)}"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/textSize_16" />
+
+                <TextView
+                    android:id="@+id/orderCustomerNameTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:padding="5dp"
+                    android:layout_below="@+id/orderIdTextView"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:text="@{orders.customer.firstName+' '+orders.customer.lastName}"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/textSize_16" />
+
+
+                    <TextView
+                        android:id="@+id/orderStatusTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:padding="5dp"
+                        android:layout_below="@+id/orderCustomerNameTextView"
+                        android:text="@{orders.status}"
+                        android:layout_marginTop="@dimen/margin_10"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/textSize_16" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_edit_status"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:minHeight="@dimen/_20sdp"
+                        android:layout_below="@+id/orderCustomerNameTextView"
+                        android:background="@drawable/button_shape_5sdp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:onClick="@{()->orderInterface.editStatus(orders.orderId,orders.status)}"
+                        android:text="EDIT"
+                         />
+
+
+                <TextView
+                    android:id="@+id/orderCreatedOnTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/orderStatusTextView"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:padding="5dp"
+                    android:text="@{String.valueOf(orders.createdAt)}"
+                    android:textSize="@dimen/textSize_16" />
+
+
+
+                    <TextView
+                        android:id="@+id/balesPackedTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/orderCreatedOnTextView"
+                        android:layout_marginTop="@dimen/margin_10"
+                        android:ellipsize="end"
+                        android:layout_weight="1"
+                        android:padding="5dp"
+                        android:layout_marginRight="8dp"
+                        android:text="@{String.valueOf(orders.balesPacked)}"
+                        android:textSize="@dimen/textSize_16" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_edit_bales"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:minHeight="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:layout_below="@+id/orderCreatedOnTextView"
+                        android:layout_alignParentRight="true"
+                        android:onClick="@{()->orderInterface.editBalesPacked(orders.orderId,orders.balesPacked)}"
+                        android:background="@drawable/button_shape_5sdp"
+                        android:text="EDIT"
+                        />
+
+
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
+</layout>
